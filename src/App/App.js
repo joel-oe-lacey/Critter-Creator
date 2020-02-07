@@ -11,7 +11,7 @@ export default class App extends Component {
     }
   }
 
-  rescueCritter = critter => {
+  houseCritter = critter => {
     this.setState({critters: [...this.state.critters, critter]});
   }
 
@@ -25,7 +25,7 @@ export default class App extends Component {
   render() {
     return (
       <section className="app">
-        <Form rescueCritter={this.rescueCritter} />
+        <Form houseCritter={this.houseCritter} />
         <Habitat critters={this.state.critters} releaseCritter={this.releaseCritter} />
       </section>
     );

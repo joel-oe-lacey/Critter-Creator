@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Form.scss';
 
 export default class Form extends Component {
-    constructor({ rescueCritter }) {
-        super({ rescueCritter });
+    constructor() {
+        super();
         this.state = {
             name: '',
             diet: '',
@@ -13,6 +13,22 @@ export default class Form extends Component {
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    rescueCritter = e => {
+        const { houseCritter } = this.props;
+        e.preventDefault();
+        const newCritter = { ...this.state, id: Date.now() };
+        houseCritter(newCritter);
+        this.resetInputs();
+    }
+
+    resetInputs = () => {
+        this.setState({
+            name: '',
+            diet: '',
+            fun_fact: ''
+        })
     }
 
     render() {
