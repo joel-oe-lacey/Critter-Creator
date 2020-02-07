@@ -11,6 +11,12 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount() {
+    fetch('http://localhost:3001/api/v1/animals')
+      .then(response => response.json())
+      .then(critters => this.setState({ critters }))
+  }
+
   houseCritter = critter => {
     this.setState({critters: [...this.state.critters, critter]});
   }

@@ -34,6 +34,7 @@ export default class Form extends Component {
     render() {
         return (
             <form className='form'>
+                <h1>Critter Creator!</h1>
                 <input 
                     type='text'
                     placeholder='Name...'

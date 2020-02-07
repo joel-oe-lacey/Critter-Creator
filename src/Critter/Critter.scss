@@ -1,0 +1,16 @@
+.critter {
+    width: 30%;
+    height: 40%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid black;
+
+    button {
+        width: 80%;
+        height: 15%;
+        font-weight: bold;
+    }
+}
