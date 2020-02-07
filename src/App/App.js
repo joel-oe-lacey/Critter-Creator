@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './App.scss';
+import Habitat from '../Habitat/Habitat';
+import Form from '../Form/Form';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      critters: []
+    }
+  }
+
+  componentDidMount() {
+    this.recallCritterRecords();
+  }
+
+  recallCritterRecords() {
+    fetch('http://localhost:3001/api/v1/animals')
+      .then(response => response.json())
+      .then(critters => this.setState({ critters }))
+  }
+
+  houseCritter = ({id, name, diet, fun_fact}) => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({id, name, diet, fun_fact}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    fetch('http://localhost:3001/api/v1/animals', options)
+      .then(response => response.json())
+      .then(critter => this.setState({ critters: [...this.state.critters, critter] }))
+  }
+
+  releaseCritter = id => {
+    fetch(`http://localhost:3001/api/v1/animals/${id}`,{method:'DELETE'})
+      .then(response => response.json())
+      .then(critters => this.setState({ critters }))
+  }
+
+  render() {
+    return (
+      <section className="app">
+        <Form houseCritter={this.houseCritter} />
+        <Habitat critters={this.state.critters} releaseCritter={this.releaseCritter} />
+      </section>
+    );
+  }
 }
-
-export default App;
