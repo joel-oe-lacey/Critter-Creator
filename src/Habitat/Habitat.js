@@ -5,7 +5,7 @@ import Critter from '../Critter/Critter';
 //refactor diet and fun_fact
 //refactor pass through 
 
-export const Habitat = ({ critters, releaseCritter }) => {
+const Habitat = ({ critters, releaseCritter }) => {
     const critterCards = critters.map(critter => {
         return <Critter {...critter} releaseCritter={releaseCritter} />
     })
@@ -16,3 +16,5 @@ export const Habitat = ({ critters, releaseCritter }) => {
         </section>
     )
 }
+
+export default Habitat;
