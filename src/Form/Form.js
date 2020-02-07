@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Form.scss';
 
 export default class Form extends Component {
-    constructor() {
-        super();
+    constructor({ rescueCritter }) {
+        super({ rescueCritter });
         this.state = {
             name: '',
             diet: '',
@@ -40,7 +40,7 @@ export default class Form extends Component {
                     onChange={this.handleChange}
                 />
                 <button
-                    onClick={this.submitNewCritter}
+                    onClick={this.rescueCritter}
                 >
                     Rescue!
                 </button>
