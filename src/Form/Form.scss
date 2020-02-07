@@ -5,11 +5,27 @@
     flex-flow: column;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #423E28;
+    background-color: #86DEB7;
+    color: #423E28;
+
+    h1 {
+        font-weight: bold;
+        font-size: 2em;
+    }
 
     input,
     button {
         width: 50%;
         height: 10%;
+        font-weight: bold;
+        color: #ADEEE3;
+        background-color: #423E28;
+        border: none;
+        text-align: center;
+    }
+    
+    ::placeholder {
+        color: #ADEEE3;
     }
 }

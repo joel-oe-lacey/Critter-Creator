@@ -6,11 +6,17 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid black;
+    border: 1px solid #423E28;
+    background-color: #63B995;
+    color: #423E28;
 
     button {
         width: 80%;
         height: 15%;
         font-weight: bold;
+        color: #ADEEE3;
+        background-color: #423E28;
+        border: none;
+        text-align: center;
     }
 }

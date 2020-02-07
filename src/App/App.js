@@ -12,20 +12,33 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.recallCritterRecords();
+  }
+
+  recallCritterRecords() {
     fetch('http://localhost:3001/api/v1/animals')
       .then(response => response.json())
       .then(critters => this.setState({ critters }))
   }
 
-  houseCritter = critter => {
-    this.setState({critters: [...this.state.critters, critter]});
+  houseCritter = ({id, name, diet, fun_fact}) => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({id, name, diet, fun_fact}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    fetch('http://localhost:3001/api/v1/animals', options)
+      .then(response => response.json())
+      .then(critter => this.setState({ critters: [...this.state.critters, critter] }))
   }
 
   releaseCritter = id => {
-    const remainingCritters = this.state.critters.filter(critter => {
-      return critter.id !== id;
-    })
-    this.setState({ critters: remainingCritters })
+    fetch(`http://localhost:3001/api/v1/animals/${id}`,{method:'DELETE'})
+      .then(response => response.json())
+      .then(critters => this.setState({ critters }))
   }
 
   render() {
